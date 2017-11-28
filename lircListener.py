@@ -1,5 +1,6 @@
 import socket
 import sys
+import re
 from subprocess import call
 
 UDP_PORT = 5006
@@ -23,4 +24,5 @@ while True:
   print("decode: ", data.decode())
 
   m = data.decode()
+  m = re.split("[^a-zA-Z0-9 _]", m)[0]
   call("irsend SEND_ONCE " + m,shell=True)
